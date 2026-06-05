@@ -1,190 +1,239 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es-co">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
-  <meta name="robots" content="noindex, nofollow" />
-  <title>Biofile &reg; - Validar documentos.</title>
-  <link href="https://fonts.googleapis.com/css?family=Be+Vietnam:300,400,500,600,700" rel="stylesheet" />
-  <link href="css/style.min.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <style>
-    b {
-      color: #0066b2;
-    }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+        <meta name="robots" content="noindex, nofollow" />
+        <title>VeriDocs - Validar documentos.</title>
+        <link
+            href="https://fonts.googleapis.com/css?family=Be+Vietnam:300,400,500,600,700"
+            rel="stylesheet"
+        />
+        <link href="css/style.min.css" rel="stylesheet" type="text/css" />
+        <style>
+            body,
+            .BgInicioSesion {
+                background-color: #e6f3ea;
+                min-height: 100vh;
+            }
 
-    .MargenSuperior,
-    .ContenedorLogin {
-      height: auto !important;
-      max-height: none;
-    }
+            b {
+                color: #0066b2;
+            }
 
-    .ContenedorLogin {
-      width: min(420px, 92vw);
-      padding: 32px 28px 40px;
-      overflow: visible;
-    }
+            .MargenSuperior,
+            .ContenedorLogin {
+                height: auto !important;
+                max-height: none;
+            }
 
-    button {
-      background-color: #22a007;
-      font-size: 24px;
-    }
+            .ContenedorLogin {
+                width: min(420px, 92vw);
+                padding: 32px 28px 40px;
+                overflow: visible;
+            }
 
-    .datos-documento {
-      font-size: 0.95rem;
-      line-height: 1.55;
-    }
+            .datos-documento {
+                font-size: 0.95rem;
+                line-height: 1.55;
+            }
 
-    .datos-documento hr {
-      margin: 0;
-      border: 0;
-      border-top: 1px solid #d0d0d0;
-    }
+            .datos-documento hr {
+                margin: 0;
+                border: 0;
+                border-top: 1px solid #d0d0d0;
+            }
 
-    .datos-documento p {
-      margin: 0;
-      padding: 8px 0;
-      text-align: left;
-    }
+            .datos-documento p {
+                margin: 0;
+                padding: 8px 0;
+                text-align: left;
+            }
 
-    #DivProgreso.mostrar {
-      display: block;
-    }
+            #DivProgreso.mostrar {
+                display: block;
+            }
 
-    .spinner-fallback {
-      display: none;
-      width: 48px;
-      height: 48px;
-      margin: 12px auto 0;
-      border: 4px solid rgba(255, 255, 255, 0.35);
-      border-top-color: #fff;
-      border-radius: 50%;
-      animation: girar 0.9s linear infinite;
-    }
+            .spinner-fallback {
+                display: none;
+                width: 48px;
+                height: 48px;
+                margin: 12px auto 0;
+                border: 4px solid rgba(255, 255, 255, 0.35);
+                border-top-color: #fff;
+                border-radius: 50%;
+                animation: girar 0.9s linear infinite;
+            }
 
-    .spinner-fallback.visible {
-      display: block;
-    }
+            .spinner-fallback.visible {
+                display: block;
+            }
 
-    @keyframes girar {
-      to {
-        transform: rotate(360deg);
-      }
-    }
+            @keyframes girar {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
 
-    @keyframes zoomInUp {
-      from {
-        opacity: 0;
-        transform: translate3d(0, 40px, 0);
-      }
-      to {
-        opacity: 1;
-        transform: none;
-      }
-    }
+            @keyframes zoomInUp {
+                from {
+                    opacity: 0;
+                    transform: translate3d(0, 40px, 0);
+                }
+                to {
+                    opacity: 1;
+                    transform: none;
+                }
+            }
 
-    .zoomInUp {
-      animation: zoomInUp 0.8s ease both;
-    }
+            .zoomInUp {
+                animation: zoomInUp 0.8s ease both;
+            }
 
-    @keyframes flipInY {
-      from {
-        opacity: 0;
-        transform: perspective(400px) rotateY(90deg);
-      }
-      to {
-        opacity: 1;
-        transform: perspective(400px);
-      }
-    }
+            @keyframes flipInY {
+                from {
+                    opacity: 0;
+                    transform: perspective(400px) rotateY(90deg);
+                }
+                to {
+                    opacity: 1;
+                    transform: perspective(400px);
+                }
+            }
 
-    .flipInY {
-      animation: flipInY 0.9s ease both;
-    }
-  </style>
-</head>
-<body>
-  <div class="BgInicioSesion">
-    <div class="MargenSuperior">
-      <div class="ContenedorLogin">
-        <div id="DivProgreso" class="mostrar" aria-live="polite">
-          <br /><br /><br /><br /><br /><br />
-          Revisando la información. . .<br />
-          <img src="imagenes/procesando.gif" id="ImgProcesando" alt="" width="48" height="48" onerror="this.style.display='none'; document.getElementById('SpinnerFallback').classList.add('visible');" />
-          <div id="SpinnerFallback" class="spinner-fallback" aria-hidden="true"></div>
+            .flipInY {
+                animation: flipInY 0.9s ease both;
+            }
+
+            .logo-veridocs {
+                display: block;
+                width: min(260px, 80%);
+                height: auto;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="BgInicioSesion">
+            <div class="MargenSuperior">
+                <div class="ContenedorLogin">
+                    <div id="DivProgreso" class="mostrar" aria-live="polite">
+                        <br /><br /><br /><br /><br /><br />
+                        Revisando la información. . .<br />
+                        <img
+                            src="imagenes/procesando.gif"
+                            id="ImgProcesando"
+                            alt=""
+                            width="48"
+                            height="48"
+                            onerror="
+                                this.style.display = 'none';
+                                document
+                                    .getElementById('SpinnerFallback')
+                                    .classList.add('visible');
+                            "
+                        />
+                        <div
+                            id="SpinnerFallback"
+                            class="spinner-fallback"
+                            aria-hidden="true"
+                        ></div>
+                    </div>
+
+                    <h3 class="animated zoomInUp">Validador de documentos</h3>
+                    <hr />
+                    <img
+                        src="imagenes/LogoVeriDocs.svg"
+                        id="ImgLogo"
+                        class="logo-veridocs Fluido animated flipInY"
+                        alt="VeriDocs"
+                    />
+                    <hr />
+
+                    <div class="datos-documento" id="DatosDocumento">
+                        <p>
+                            <b>Código de seguridad: </b
+                            ><span id="codigoSeguridad">W39C1I37899</span>
+                        </p>
+                        <hr />
+                        <p>
+                            <b>Centro Médico: </b>Dr. MARTINEZ GOMEZ ALEXANDER -
+                            R.M. LM 2379-15
+                        </p>
+                        <hr />
+                        <p><b>Nº: </b>18,293</p>
+                        <hr />
+                        <p><b>Fecha y Hora: </b>05 Jun 2026, 14:15</p>
+                        <hr />
+                        <p>
+                            <b>Lugar de Realización del Exámen: </b>MEDELLIN
+                            (ANTIOQUIA, COLOMBIA)
+                        </p>
+                        <hr />
+                        <p><b>Nº de Identificación: </b>CC: 79611442</p>
+                        <hr />
+                        <p><b>Nombre Completo: </b>CARLOS RODRIGO RUIZ CRUZ</p>
+                        <hr />
+                        <p>
+                            <b>Nombre de la Empresa: </b>PROFESIONAL
+                            INDEPENDIENTE
+                        </p>
+                        <hr />
+                        <p>
+                            <b>Empresa en Misión: </b>PROFESIONAL INDEPENDIENTE
+                        </p>
+                        <hr />
+                        <p>
+                            <b>Tipo de Exámen Médico Ocupacional: </b>EVALUACIÓN
+                            MÉDICO OCUPACIONAL DE INGRESO
+                        </p>
+                        <hr />
+                        <p>
+                            <b>Tipo de Concepto: </b>INGRESO, PRE-OCUPACIONAL O
+                            PRE-INGRESO
+                        </p>
+                        <hr />
+                        <p>
+                            <b>Concepto Médico Ocupacional: </b>APTO PARA
+                            DESEMPEÑAR EL CARGO SIN RESTRICCIONES. SIN
+                            ALTERACIONES OSTEOMUSCULARES, VISIÓN NORMAL
+                        </p>
+                        <hr />
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <h3 class="animated zoomInUp">Validador de documentos</h3>
-        <hr />
-        <img src="imagenes/LogoBiofile.png" id="ImgLogo" class="Fluido animated flipInY" alt="Biofile" onerror="this.style.display='none';" />
-        <hr />
-
-        <div class="datos-documento" id="DatosDocumento">
-          <p><b>Código de seguridad: </b><span id="codigoSeguridad">W39C1I37899</span></p>
-          <hr />
-          <p><b>Centro Médico: </b>Dr. CARLOS RODRIGO RUIZ CRUZ - R.M. LM 2379-15</p>
-          <hr />
-          <p><b>Nº: </b>18,293</p>
-          <hr />
-          <p><b>Fecha y Hora: </b>05 Jun 2026</p>
-          <hr />
-          <p><b>Lugar de Realización del Exámen: </b>MEDELLIN (ANTIOQUIA, COLOMBIA)</p>
-          <hr />
-          <p><b>Nº de Identificación: </b>CC: 79611442</p>
-          <hr />
-          <p><b>Nombre Completo: </b>CARLOS RODRIGO RUIZ CRUZ</p>
-          <hr />
-          <p><b>Nombre de la Empresa: </b>PROFESIONAL INDEPENDIENTE</p>
-          <hr />
-          <p><b>Empresa en Misión: </b>PROFESIONAL INDEPENDIENTE</p>
-          <hr />
-          <p><b>Tipo de Exámen Médico Ocupacional: </b>EVALUACIÓN MÉDICO OCUPACIONAL DE INGRESO</p>
-          <hr />
-          <p><b>Tipo de Concepto: </b>INGRESO, PRE-OCUPACIONAL O PRE-INGRESO</p>
-          <hr />
-          <p><b>Concepto Médico Ocupacional: </b>APTO PARA DESEMPEÑAR EL CARGO SIN RESTRICCIONES. SIN ALTERACIONES OSTEOMUSCULARES, VISIÓN NORMAL</p>
-          <hr />
+        <div
+            style="
+                color: #115294;
+                text-align: center;
+                width: 100%;
+                padding-bottom: 16px;
+            "
+        >
+            OCI W39C1I37899
         </div>
 
-        <br />
-        <br />
-        <button type="button" onclick="return cerrarVentana();"><i class="fa fa-check-circle-o"></i>&nbsp;¡Listo!</button>
-        <br />
-        <br />
-      </div>
-    </div>
-  </div>
+        <script>
+            (function () {
+                var params = new URLSearchParams(window.location.search);
+                var trama = params.get('Trama') || params.get('trama');
+                if (trama) {
+                    document.getElementById('codigoSeguridad').textContent =
+                        trama;
+                    document.title = 'VeriDocs - Validar documentos.';
+                }
 
-  <div style="color: #115294; text-align: center; width: 100%; padding-bottom: 16px;">OCI W39C1I37899</div>
-
-  <script>
-    (function () {
-      var params = new URLSearchParams(window.location.search);
-      var trama = params.get("Trama") || params.get("trama");
-      if (trama) {
-        document.getElementById("codigoSeguridad").textContent = trama;
-        document.title = "Biofile \u00ae - Validar documentos.";
-      }
-
-      window.addEventListener("load", function () {
-        setTimeout(function () {
-          var overlay = document.getElementById("DivProgreso");
-          if (overlay) {
-            overlay.style.display = "none";
-          }
-        }, 1800);
-      });
-    })();
-
-    function cerrarVentana() {
-      if (window.history.length > 1) {
-        window.history.back();
-        return false;
-      }
-
-      window.close();
-      return false;
-    }
-  </script>
-</body>
+                window.addEventListener('load', function () {
+                    setTimeout(function () {
+                        var overlay = document.getElementById('DivProgreso');
+                        if (overlay) {
+                            overlay.style.display = 'none';
+                        }
+                    }, 1800);
+                });
+            })();
+        </script>
+    </body>
 </html>

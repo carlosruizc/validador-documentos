@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 56" role="img" aria-label="VeriDocs">
+  <defs>
+    <linearGradient id="doc-green" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2db310"/>
+      <stop offset="100%" stop-color="#1a7d06"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Documento -->
+  <rect x="4" y="6" width="36" height="44" rx="4" fill="#fff" stroke="#22a007" stroke-width="2"/>
+  <path d="M28 6 L40 6 L40 18 L28 18 Z" fill="#c8e6d0"/>
+  <path d="M28 6 L40 18 L28 18 Z" fill="#22a007" opacity="0.25"/>
+  <rect x="12" y="24" width="20" height="2.5" rx="1.25" fill="#b8d4c0"/>
+  <rect x="12" y="30" width="16" height="2.5" rx="1.25" fill="#b8d4c0"/>
+  <rect x="12" y="36" width="18" height="2.5" rx="1.25" fill="#b8d4c0"/>
+
+  <!-- Sello de verificación -->
+  <circle cx="36" cy="44" r="11" fill="url(#doc-green)"/>
+  <path d="M31 44 L34.5 47.5 L41.5 40" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- VeriDocs pegado -->
+  <text x="54" y="38" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="26" font-weight="700" letter-spacing="-0.3">
+    <tspan fill="#1a5c2e">Veri</tspan><tspan fill="#22a007">Docs</tspan>
+  </text>
+</svg>
