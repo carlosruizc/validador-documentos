@@ -153,50 +153,55 @@
                     <div class="datos-documento" id="DatosDocumento">
                         <p>
                             <b>Código de seguridad: </b
-                            ><span id="codigoSeguridad">W39C1I37899</span>
+                            ><span id="codigoSeguridad"></span>
                         </p>
                         <hr />
                         <p>
-                            <b>Centro Médico: </b>Dr. MARTINEZ GOMEZ ALEXANDER -
-                            R.M. LM 2379-15
+                            <b>Centro Médico: </b><span id="centroMedico"></span>
                         </p>
                         <hr />
-                        <p><b>Nº: </b>18,293</p>
-                        <hr />
-                        <p><b>Fecha y Hora: </b>05 Jun 2026, 14:15</p>
+                        <p><b>Nº: </b><span id="numeroDocumento"></span></p>
                         <hr />
                         <p>
-                            <b>Lugar de Realización del Exámen: </b>MEDELLIN
-                            (ANTIOQUIA, COLOMBIA)
-                        </p>
-                        <hr />
-                        <p><b>Nº de Identificación: </b>CC: 79611442</p>
-                        <hr />
-                        <p><b>Nombre Completo: </b>CARLOS RODRIGO RUIZ CRUZ</p>
-                        <hr />
-                        <p>
-                            <b>Nombre de la Empresa: </b>PROFESIONAL
-                            INDEPENDIENTE
+                            <b>Fecha y Hora: </b><span id="fechaHora"></span>
                         </p>
                         <hr />
                         <p>
-                            <b>Empresa en Misión: </b>PROFESIONAL INDEPENDIENTE
+                            <b>Lugar de Realización del Exámen: </b
+                            ><span id="lugarExamen"></span>
                         </p>
                         <hr />
                         <p>
-                            <b>Tipo de Exámen Médico Ocupacional: </b>EVALUACIÓN
-                            MÉDICO OCUPACIONAL DE INGRESO
+                            <b>Nº de Identificación: </b
+                            ><span id="identificacion"></span>
                         </p>
                         <hr />
                         <p>
-                            <b>Tipo de Concepto: </b>INGRESO, PRE-OCUPACIONAL O
-                            PRE-INGRESO
+                            <b>Nombre Completo: </b><span id="nombreCompleto"></span>
                         </p>
                         <hr />
                         <p>
-                            <b>Concepto Médico Ocupacional: </b>APTO PARA
-                            DESEMPEÑAR EL CARGO SIN RESTRICCIONES. SIN
-                            ALTERACIONES OSTEOMUSCULARES, VISIÓN NORMAL
+                            <b>Nombre de la Empresa: </b
+                            ><span id="nombreEmpresa"></span>
+                        </p>
+                        <hr />
+                        <p>
+                            <b>Empresa en Misión: </b
+                            ><span id="empresaMision"></span>
+                        </p>
+                        <hr />
+                        <p>
+                            <b>Tipo de Exámen Médico Ocupacional: </b
+                            ><span id="tipoExamen"></span>
+                        </p>
+                        <hr />
+                        <p>
+                            <b>Tipo de Concepto: </b><span id="tipoConcepto"></span>
+                        </p>
+                        <hr />
+                        <p>
+                            <b>Concepto Médico Ocupacional: </b
+                            ><span id="conceptoMedico"></span>
                         </p>
                         <hr />
                     </div>
@@ -212,17 +217,48 @@
                 padding-bottom: 16px;
             "
         >
-            OCI W39C1I37899
+            <span id="codigoFooter"></span>
         </div>
 
         <script>
             (function () {
+                var datosDocumento = {
+                    codigoSeguridad: 'W39C1I37899',
+                    centroMedico:
+                        'Dr. MARTINEZ GOMEZ ALEXANDER - R.M. LM 2379-15',
+                    numeroDocumento: '18,293',
+                    fechaHora: '05 Jun 2026, 14:15',
+                    lugarExamen: 'MEDELLIN (ANTIOQUIA, COLOMBIA)',
+                    identificacion: 'CC: 79611442',
+                    nombreCompleto: 'CARLOS RODRIGO RUIZ CRUZ',
+                    nombreEmpresa: 'PROFESIONAL INDEPENDIENTE',
+                    empresaMision: 'PROFESIONAL INDEPENDIENTE',
+                    tipoExamen: 'EVALUACIÓN MÉDICO OCUPACIONAL DE INGRESO',
+                    tipoConcepto: 'INGRESO, PRE-OCUPACIONAL O PRE-INGRESO',
+                    conceptoMedico:
+                        'APTO PARA DESEMPEÑAR EL CARGO SIN RESTRICCIONES. SIN ALTERACIONES OSTEOMUSCULARES, VISIÓN NORMAL',
+                };
+
                 var params = new URLSearchParams(window.location.search);
                 var trama = params.get('Trama') || params.get('trama');
                 if (trama) {
-                    document.getElementById('codigoSeguridad').textContent =
-                        trama;
+                    datosDocumento.codigoSeguridad = trama;
                     document.title = 'VeriDocs - Validar documentos.';
+                }
+
+                function mostrarDatosDocumento() {
+                    Object.keys(datosDocumento).forEach(function (campo) {
+                        var elemento = document.getElementById(campo);
+                        if (elemento) {
+                            elemento.textContent = datosDocumento[campo];
+                        }
+                    });
+
+                    var footer = document.getElementById('codigoFooter');
+                    if (footer) {
+                        footer.textContent =
+                            'OCI ' + datosDocumento.codigoSeguridad;
+                    }
                 }
 
                 window.addEventListener('load', function () {
@@ -231,6 +267,7 @@
                         if (overlay) {
                             overlay.style.display = 'none';
                         }
+                        mostrarDatosDocumento();
                     }, 1800);
                 });
             })();
